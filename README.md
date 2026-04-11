@@ -55,8 +55,8 @@ Menggunakan **Spatie Permission**:
 - Atasan dapat:
   - Approve
   - Reject
-- Status flow:
-pending → approved → returned
+- Status flow:\
+pending → approved → returned\
 pending → rejected
 
 
@@ -99,15 +99,15 @@ Menggunakan activity log untuk tracking:
 ---
 
 ## 📂 Project Structure (Highlight)
-app/
-├── Models/
-├── Services/
+app/\
+├── Models/\
+├── Services/\
 ├── Http/Controllers/
 
-resources/
-├── views/
-│ ├── livewire/
-│ ├── components/
+resources/\
+├── views/\
+│ ├── livewire/\
+│ ├── components/\
 │ ├── reports/
 
 
@@ -120,29 +120,57 @@ resources/
 ```bash
 git clone https://github.com/roihan165/assets_management.git
 cd assets_management
-
+```
 ### 2. Install Dependency
 
 ```bash
 composer install
 npm install && npm run dev
-
+```
 ### 3. Setup Enviroment
 
 ```bash
 cp .env.example .env
 php artisan key:generate
-
+```
 ### 4. Database Migration
 
 ```bash
 php artisan migrate --seed
-
+```
 ### 5. Run Server
 ```bash
 composer run dev
+```
 
-👤 Default Account
-Admin:
-email: admin@example.com
-password: password123
+👤 Default Account\
+Admin:\
+email: `admin@example.com`\
+password: `password123`
+
+📌 Key Concepts\
+🔹 Unit-Based Inventory\
+Setiap barang memiliki unit unik (bukan quantity biasa)
+
+🔹 Status vs Condition\
+* Status → posisi barang (available, borrowed, dll)\
+* Condition → kondisi fisik barang
+  
+🔹 Service Layer\
+Semua logic utama ditempatkan di service:
+* LoanService
+* ItemService
+* ReportService
+
+---
+🤝 Contributing\
+Pull request terbuka untuk improvement dan bug fix.
+
+---
+
+📄 License\
+MIT License
+
+---
+👨‍💻 Author\
+Developed by [AI]
