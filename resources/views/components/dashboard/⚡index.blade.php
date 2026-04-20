@@ -189,18 +189,39 @@ new class extends Component
                             <tr class="border-b hover:bg-gray-50">
 
                                 <td class="py-2">
-                                    <div class="flex items-center gap-2">
+                                    <div class="flex items-center gap-3">
 
-                                        {{-- indicator kecil --}}
-                                        @if ($item->lost_units > 0 || $item->major_units > 0)
-                                            <span class="w-2 h-2 rounded-full bg-red-500"></span>
-                                        @elseif ($item->minor_units > 0)
-                                            <span class="w-2 h-2 rounded-full bg-yellow-400"></span>
+                                        {{-- item image --}}
+                                        @if (file_exists(public_path('images/barang/barang ' . $item->id . '.png')))
+                                            <img
+                                                src="/images/barang/barang {{ $item->id }}.png"
+                                                alt="{{ $item->name }}"
+                                                class="w-10 h-10 rounded object-cover border"
+                                            >
                                         @else
-                                            <span class="w-2 h-2 rounded-full bg-green-400"></span>
+                                            <img
+                                                src="https://placehold.co/48x48/4f46e5/white?text={{ urlencode(substr($item->name, 0, 2)) }}"
+                                                alt="{{ $item->name }}"
+                                                class="w-10 h-10 rounded object-cover border"
+                                            >
                                         @endif
 
-                                        {{ $item->name }}
+                                        <div class="flex flex-col">
+                                            <div class="flex items-center gap-2">
+
+                                                {{-- indicator kecil --}}
+                                                @if ($item->lost_units > 0 || $item->major_units > 0)
+                                                    <span class="w-2 h-2 rounded-full bg-red-500"></span>
+                                                @elseif ($item->minor_units > 0)
+                                                    <span class="w-2 h-2 rounded-full bg-yellow-400"></span>
+                                                @else
+                                                    <span class="w-2 h-2 rounded-full bg-green-400"></span>
+                                                @endif
+
+                                                <span class="font-medium">{{ $item->name }}</span>
+                                            </div>
+                                            <span class="text-xs text-gray-400">{{ $item->total ?? $item->units->count() }} unit(s) total</span>
+                                        </div>
                                     </div>
                                 </td>
 
