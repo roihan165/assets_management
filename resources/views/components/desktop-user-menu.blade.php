@@ -1,6 +1,15 @@
+<?php
+$roleMap = [
+    'admin' => 'Manager',
+    'atasan' => 'Supervisor',
+    'staff' => 'Teknisi',
+];
+$roleName = auth()->user()->getRoleNames()->first() ?? '';
+$roleDisplay = $roleMap[$roleName] ?? ucfirst($roleName);
+?>
 <flux:dropdown position="bottom" align="start">
     <flux:sidebar.profile
-        :name="auth()->user()->name"
+        :name="auth()->user()->name . ' (' . $roleDisplay . ')'"
         :initials="auth()->user()->initials()"
         icon:trailing="chevrons-up-down"
         data-test="sidebar-menu-button"

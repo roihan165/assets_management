@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Welcome - {{ config('app.name') }}</title>
+    
+    <link rel="icon" href="/images/logo.png" type="image/png">
 
     @vite('resources/css/app.css')
     @livewireStyles

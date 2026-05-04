@@ -192,19 +192,35 @@ new class extends Component
                                     <div class="flex items-center gap-3">
 
                                         {{-- item image --}}
-                                        @if (file_exists(public_path('images/barang/barang ' . $item->id . '.png')))
-                                            <img
-                                                src="/images/barang/barang {{ $item->id }}.png"
-                                                alt="{{ $item->name }}"
-                                                class="w-10 h-10 rounded object-cover border"
-                                            >
-                                        @else
-                                            <img
-                                                src="https://placehold.co/48x48/4f46e5/white?text={{ urlencode(substr($item->name, 0, 2)) }}"
-                                                alt="{{ $item->name }}"
-                                                class="w-10 h-10 rounded object-cover border"
-                                            >
-                                        @endif
+                                        <div class="relative group/item">
+                                            @if (file_exists(public_path('images/barang/barang ' . $item->id . '.png')))
+                                                <img
+                                                    src="/images/barang/barang {{ $item->id }}.png"
+                                                    alt="{{ $item->name }}"
+                                                    class="w-10 h-10 rounded object-cover border cursor-pointer"
+                                                >
+                                                <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover/item:block z-50 pointer-events-none w-40 h-40 rounded-xl border-2 border-indigo-500 shadow-xl bg-white overflow-hidden">
+                                                    <img
+                                                        src="/images/barang/barang {{ $item->id }}.png"
+                                                        alt="{{ $item->name }}"
+                                                        class="w-full h-full object-contain"
+                                                    >
+                                                </div>
+                                            @else
+                                                <img
+                                                    src="https://placehold.co/48x48/4f46e5/white?text={{ urlencode(substr($item->name, 0, 2)) }}"
+                                                    alt="{{ $item->name }}"
+                                                    class="w-10 h-10 rounded object-cover border cursor-pointer"
+                                                >
+                                                <div class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 hidden group-hover/item:block z-50 pointer-events-none w-40 h-40 rounded-xl border-2 border-indigo-500 shadow-xl bg-white overflow-hidden">
+                                                    <img
+                                                        src="https://placehold.co/160x160/4f46e5/white?text={{ urlencode(substr($item->name, 0, 2)) }}"
+                                                        alt="{{ $item->name }}"
+                                                        class="w-full h-full object-contain"
+                                                    >
+                                                </div>
+                                            @endif
+                                        </div>
 
                                         <div class="flex flex-col">
                                             <div class="flex items-center gap-2">
