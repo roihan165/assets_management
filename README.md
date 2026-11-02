@@ -143,10 +143,18 @@ php artisan migrate --seed
 composer run dev
 ```
 
-👤 Default Account\
-Admin:\
-email: `admin@example.com`\
-password: `password123`
+### Default Test Accounts
+
+Run `php artisan migrate --seed` to create the default roles and accounts.
+All test accounts use the password `password123`:
+
+| Role | Email | Password |
+| --- | --- | --- |
+| Super Admin (`admin`) | `admin@example.com` | `password123` |
+| SPV / Atasan (`atasan`) | `spv@example.com` | `password123` |
+| Staff (`staff`) | `staff@example.com` | `password123` |
+
+These are development and testing accounts. Do not use the default credentials in production.
 
 📌 Key Concepts\
 🔹 Unit-Based Inventory\

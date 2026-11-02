@@ -14,15 +14,23 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $admin = User::firstOrCreate(
-            ['email' => 'admin@example.com'],
-            [
-                'name' => 'Super Admin',
-                'password' => Hash::make('password123'),
-                'email_verified_at' => now(),
-            ]
-        );
+        $accounts = [
+            ['name' => 'Super Admin', 'email' => 'admin@example.com', 'role' => 'admin'],
+            ['name' => 'SPV Test', 'email' => 'spv@example.com', 'role' => 'atasan'],
+            ['name' => 'Staff Test', 'email' => 'staff@example.com', 'role' => 'staff'],
+        ];
 
-        $admin->assignRole('admin');
+        foreach ($accounts as $account) {
+            $user = User::updateOrCreate(
+                ['email' => $account['email']],
+                [
+                    'name' => $account['name'],
+                    'password' => Hash::make('password123'),
+                    'email_verified_at' => now(),
+                ]
+            );
+
+            $user->syncRoles([$account['role']]);
+        }
     }
 }

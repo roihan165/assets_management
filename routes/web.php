@@ -42,4 +42,9 @@ Route::view('/loans/return', 'loans.return')
 Route::view('/loans/return-approval', 'loans.return-approval')
     ->middleware(['auth', 'role:atasan']);
 
+Route::view('/asset-purchases', 'asset-purchases.index')
+    ->middleware(['auth', 'role:atasan']);
+Route::view('/asset-purchases/approval', 'asset-purchases.approval')
+    ->middleware(['auth', 'role:admin']);
+
 require __DIR__.'/settings.php';

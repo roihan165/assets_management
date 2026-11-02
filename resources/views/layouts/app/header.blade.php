@@ -54,6 +54,15 @@
                     Approval
                     </flux:navbar.item>
 
+                    <flux:navbar.item
+                        icon="shopping-cart"
+                        href="/asset-purchases"
+                        :current="request()->is('asset-purchases')"
+                        wire:navigate
+                    >
+                        Pengajuan Aset
+                    </flux:navbar.item>
+
                     <flux:navbar.item 
                         icon="arrow-uturn-left" 
                         href="/loans/return-approval" 
@@ -86,6 +95,15 @@
             
                 {{-- ADMIN --}}
                 @role('admin')
+                    <flux:navbar.item
+                        icon="clipboard-document-check"
+                        href="/asset-purchases/approval"
+                        :current="request()->is('asset-purchases/approval')"
+                        wire:navigate
+                    >
+                        Approval Aset
+                    </flux:navbar.item>
+
                     <flux:navbar.item 
                         icon="document-arrow-down" 
                         href="{{ url('/reports/loans/pdf?status=returned') }}"
@@ -138,6 +156,16 @@
                     <flux:sidebar.item icon="layout-grid" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
                         {{ __('Dashboard')  }}
                     </flux:sidebar.item>
+                    @role('atasan')
+                        <flux:sidebar.item icon="shopping-cart" href="/asset-purchases" :current="request()->is('asset-purchases')" wire:navigate>
+                            Pengajuan Aset
+                        </flux:sidebar.item>
+                    @endrole
+                    @role('admin')
+                        <flux:sidebar.item icon="clipboard-document-check" href="/asset-purchases/approval" :current="request()->is('asset-purchases/approval')" wire:navigate>
+                            Approval Aset
+                        </flux:sidebar.item>
+                    @endrole
                 </flux:sidebar.group>
             </flux:sidebar.nav>
 
