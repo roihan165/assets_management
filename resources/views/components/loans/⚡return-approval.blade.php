@@ -18,7 +18,7 @@ new class extends Component
     public function approve($loanId)
     {
         app(\App\Services\LoanService::class)
-            ->approveReturn($loanId, auth()->id(), $this->conditions, $this->notes);
+            ->approveReturn($loanId, auth()->id());
 
         session()->flash('success', 'Return disetujui');
     }

@@ -12,7 +12,7 @@ class LoanService
 {
     public function createLoan(int $userId, array $itemUnitIds, $notes): Loan
     {
-        return DB::transaction(function () use ($userId, $itemUnitIds) {
+        return DB::transaction(function () use ($userId, $itemUnitIds, $notes) {
 
             // 1. Ambil data unit dari DB
             $units = ItemUnit::whereIn('id', $itemUnitIds)

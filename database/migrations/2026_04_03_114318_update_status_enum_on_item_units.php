@@ -12,6 +12,10 @@ return new class extends Migration
      */
     public function up(): void
     {
+        if (DB::getDriverName() !== 'mysql') {
+            return;
+        }
+
         DB::statement("
             ALTER TABLE item_units 
             MODIFY status ENUM('available', 'borrowed', 'maintenance' , 'lost' ,'retired')
@@ -23,6 +27,10 @@ return new class extends Migration
      */
     public function down(): void
     {
+        if (DB::getDriverName() !== 'mysql') {
+            return;
+        }
+
         DB::statement("
             ALTER TABLE item_units 
             MODIFY status ENUM('available', 'borrowed', 'maintenance', 'lost')

@@ -1,6 +1,8 @@
 <?php
 
 use Tests\TestCase;
+use App\Models\User;
+use Spatie\Permission\Models\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,4 +48,16 @@ expect()->extend('toBeOne', function () {
 function something()
 {
     // ..
+}
+
+function testUserWithRole(string $role): User
+{
+    foreach (['admin', 'atasan', 'staff'] as $availableRole) {
+        Role::findOrCreate($availableRole, 'web');
+    }
+
+    $user = User::factory()->create();
+    $user->assignRole($role);
+
+    return $user;
 }
